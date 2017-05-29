@@ -54,7 +54,7 @@ public class Task implements Serializable {
     public Task(){}
 
     public Task(String name, String description, boolean finished) {
-        super();
+
         this.name = name;
         this.description = description;
         this.finished = finished;
