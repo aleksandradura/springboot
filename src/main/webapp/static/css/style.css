@@ -1,3 +1,4 @@
+
 .invisible-at-first {
     display: none;
 }
@@ -12,4 +13,14 @@ body {
 }
 li.dropdown:hover > .dropdown-menu {
     display: block;
+}
+
+.myCarousel {
+    width:640px;
+    height:360px;
+}
+#tHome {
+    margin-right: 200px;
+    padding-right: 200px;
+    background-color: blue;
 }

@@ -15,6 +15,7 @@
     <title>Task Manager | Home </title>
     <link hred="static/css/bootstrap.min.css" rel="stylesheet">
     <link hred="static/css/style.css" rel="stylesheet">
+    <style>.carousel-inner > .item > img { width:100%; height:360px; } </style>
 </head>
 
 <body>
@@ -25,8 +26,18 @@
             <ul class="nav navbar-nav">
                 <li><a href="new-task">New Task</a></li>
                 <li><a href="all-tasks">All Task</a></li>
-                <li><a href="student">Strefa studenta</a></li>
-                <li><a href="#">Strefa nauczyciela</a></li>
+                <%--<li><a href="student">Strefa studenta</a></li>--%>
+
+                <li class="dropdown">
+                    <a href ="#" class="dropdown-toggle" data-toggle="dropdown">Strefa studenta
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="student2">Zaloguj się</a></li>
+                        <li><a href="registrationStudent">Zarejestruj się</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="teacher2">Strefa nauczyciela</a></li>
             </ul>
         </div>
     </div>
@@ -49,7 +60,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="item active">
-                <img src="./images/all.jpg" alt="sport" width="460" height="345">
+                <img src="./images/all.jpg" alt="sport" width="460" height="800">
                 <div class="carousel-caption">
                     <%--<h3>Chania</h3>--%>
                     <%--<p>The atmosphere in Chania has a touch of Florence and Venice.</p>--%>

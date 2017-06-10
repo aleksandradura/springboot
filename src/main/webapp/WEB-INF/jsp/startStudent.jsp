@@ -22,7 +22,7 @@
                 <li><a href="new-task">New Task</a></li>
                 <li><a href="all-tasks">All Task</a></li>
                 <li><a href="student">Strefa studenta</a></li>
-                <li><a href="loginStudent">Zaloguj sie</a></li>
+                <li><a href="student2">Zaloguj sie</a></li>
                 <li><a href="registrationStudent">Zarejestruj</a></li>
             </ul>
         </div>

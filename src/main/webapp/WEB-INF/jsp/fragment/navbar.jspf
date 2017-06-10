@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div role = "navigation">
+    <div class="navbar navbar-inverse">
+        <a href="/" class="navbar-brand">  BootSample</a>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="new-task">New Task</a></li>
+                <li><a href="all-tasks">All Task</a></li>
+                <li><a href="student">Strefa studenta</a></li>
+                <li><a href="student2">Zaloguj sie</a></li>
+                <li><a href="registrationStudent">Zarejestruj</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

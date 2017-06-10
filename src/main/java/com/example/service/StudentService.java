@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by test on 02.05.2017.
  */
@@ -22,5 +25,15 @@ public class StudentService {
 
     public void save(StudentEntity student) {
         studentRepository.save(student);
+    }
+    public StudentEntity findStudent(String indeks) {
+        return studentRepository.findByIndeks(indeks);
+    }
+    public List<StudentEntity> findAllS(){
+        List<StudentEntity> tas = new ArrayList<>();
+        for(StudentEntity student : studentRepository.findAll()) {
+            tas.add(student);
+        }
+        return tas;
     }
 }

@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentRepository extends CrudRepository<StudentEntity, String> {
-    StudentEntity findByUsername(String studentname);
+    StudentEntity findByIndeks(String indeks);
 }
