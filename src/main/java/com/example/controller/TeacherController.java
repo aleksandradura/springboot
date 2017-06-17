@@ -104,11 +104,11 @@ public class TeacherController {
     @RequestMapping(path = "/save-status", method = RequestMethod.POST)
     public String saveStatus(@ModelAttribute ObecnoscEntity obecnosc, ModelAndView model, BindingResult bindingResult, HttpServletRequest request) {
         model.addObject("indeks", obecnosc);
-        model.addObject("data" , obecnosc);
+        model.addObject("datepicker" , obecnosc);
         model.addObject("status" , obecnosc);
         obecnoscService.save(obecnosc);
 //  request.setAttribute("mode" , "MODE_STATUS");
-        return "teacherHomePage/1";
+        return "redirect:/teacher2/1";
     }
     @RequestMapping(path = "/send-message", method = RequestMethod.GET)
     public String sendMessage(@ModelAttribute Task task, BindingResult bindingResult, HttpServletRequest request) {

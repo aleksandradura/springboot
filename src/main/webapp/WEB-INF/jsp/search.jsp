@@ -4,20 +4,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="pl-PL">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%--<meta name="viewport" content="initial-scale=1, maximum-scale=1">--%>
-    <link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
     <meta http-equiv="X-UA-Compatibile" content="IE=edge">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>Teacher | Search student </title>
     <link hred="static/css/bootstrap.min.css" rel="stylesheet">
     <link hred="static/css/style.css" rel="stylesheet">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+            var startDate = new Date();
+
+            var myDate = $("#startDate").datepicker("getDate");
+//            dateFormat: 'dd-mm-YYYY'
+//            var data = $(this).datepicker( 'getDate' );
+//            $.datepicker.formatDate('dd MM, yy', dateObject);
+           // $("#datepicker").datepicker("setDate", new Date());
+            $("#startDate").datepicker("setDate", myDate);
+
+
+        } );
+
+
+    </script>
 </head>
 <body>
+
 <div role = "navigation">
     <div class="navbar navbar-inverse">
         <a href="/" class="navbar-brand">  BootSample</a>
@@ -50,9 +71,9 @@
                 <table class="table table-striped table-bordered text-left">
                     <thead>
                     <tr>
-                        <th>imie</th>
-                        <th>nazwisko</th>
-                        <th>indeks</th>
+                        <th>INDEKS</th>
+                        <th>DATA</th>
+                        <th>STATUS</th>
                     </tr>
 
                     </thead>
@@ -64,12 +85,32 @@
                             <c:set var="indeks" value="${a.indeks}" scope="session"/>
                             <input type="hidden" id="indeks" name="indeks" value="${a.indeks}"/>
                             <%
-                                String name = request.getParameter( "ndeks" );
+                                String name = request.getParameter( "indeks" );
                                 session.setAttribute( "theName", name );
                             %>
+
                             <%--<td><c:out value="${a.firstName}"/></td>--%>
                             <%--<td><c:out value="${a.lastName}"/></td>--%>
-                            <td><input type="text" name="data" id="data" value="${data}"/></td>
+                            <%--<td><input type="text" name="data" id="data" value="${data}"/></td>--%>
+
+                            <td>
+                                <%--<div class='input-group date' id='datetimepicker1'>--%>
+                                    <%--<input type='text' class="form-control" />--%>
+                                        <%--<span class="input-group-addon">--%>
+                                            <%--<span class="glyphicon glyphicon-calendar"></span>--%>
+                                         <%--</span>--%>
+                                 <%--</div>--%>
+                                    <input type="text" id="datepicker" name="datepicker" value="${selectedDate}">
+
+                            </td>
+
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker1').datetimepicker();
+                                });
+                            </script>
+
+
                             <td><input type="text" name="status" id="status" value="${status}"/></td>
                             <td><a href="send-message"><span class="glyphicon glyphicon-pencil"></span></a></td>
 
@@ -85,7 +126,6 @@
             </form:form>
         </div>
 
-<script src="static/js/bootstrap.js/bootstrap.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><%--<script language="JavaScript" type="text/javascript">--%>
+
 </body>
 </html>
