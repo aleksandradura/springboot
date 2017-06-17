@@ -11,13 +11,20 @@ import java.util.Date;
 public class Task implements Serializable {
 
     @Id
-    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=205, allocationSize=12)
-    @GeneratedValue(strategy= GenerationType.IDENTITY, generator="seq-gen")
-    @Column(name="\"ID\"",unique=true,nullable=false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="\"ID\"")
     private int id;
     private String name;
     private String description;
-    private boolean finished;
+    private String indeks;
+
+    public String getIndeks() {
+        return indeks;
+    }
+
+    public void setIndeks(String indeks) {
+        this.indeks = indeks;
+    }
 
     public int getId() {
         return id;
@@ -43,22 +50,15 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
 
     public Task(){}
 
-    public Task(String name, String description, boolean finished) {
-
+    public Task(String name, String description, String indeks) {
         this.name = name;
         this.description = description;
-        this.finished = finished;
+        this.indeks = indeks;
     }
+
 
     @Override
     public String toString() {
@@ -66,7 +66,7 @@ public class Task implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", finished=" + finished +
+                ", indeks=" + indeks +
                 '}';
     }
 }

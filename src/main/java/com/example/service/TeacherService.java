@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dao.StudentRepository;
 import com.example.dao.TeacherRepository;
 import com.example.model.StudentEntity;
+import com.example.model.Task;
 import com.example.model.TeacherEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,7 +36,7 @@ public class TeacherService {
 
     }
 
-    public Page<TeacherEntity> getEventLog(Integer pageNumber) {
+    public Page<TeacherEntity> getTeacherLog(Integer pageNumber) {
         PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE);
         return teacherRepository.findAll(request);
     }

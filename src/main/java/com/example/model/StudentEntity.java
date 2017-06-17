@@ -28,6 +28,8 @@ public class StudentEntity implements Serializable {
     @NotNull
     @Size(min=3, max=20, message="{password.size}")
     private String password;
+
+    private String kategoria;
    // private Set<Role> roles;
 
     @Override
@@ -38,7 +40,16 @@ public class StudentEntity implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", indeks='" + indeks + '\'' +
                 ", password='" + password + '\'' +
+                ", kategoria='" + kategoria + '\'' +
                 '}';
+    }
+
+    public String getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(String kategoria) {
+        this.kategoria = kategoria;
     }
 
     public int getStudentId() {
@@ -82,12 +93,13 @@ public class StudentEntity implements Serializable {
     }
 
     public StudentEntity() {}
-    public StudentEntity(String firstName, String lastName, String indeks, String password) {
+    public StudentEntity(String firstName, String lastName, String indeks, String password, String kategoria) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.indeks = indeks;
         this.password = password;
+        this.kategoria = kategoria;
     }
 //    @ManyToMany
 //    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

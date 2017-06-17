@@ -8,10 +8,19 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl-PL">
 <head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%--<meta name="viewport" content="initial-scale=1, maximum-scale=1">--%>
     <link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
@@ -19,13 +28,27 @@
     <meta http-equiv="X-UA-Compatibile" content="IE=edge">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <title>Task Manager | Home </title>
-    <link hred="static/css/bootstrap.min.css" rel="stylesheet">
-    <link hred="static/css/style.css" rel="stylesheet">
+    <title>Teacher | My students </title>
+    <%--<link hred="static/css/bootstrap.min.css" rel="stylesheet">--%>
+    <%--<link hred="static/css/style.css" rel="stylesheet">--%>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style>
+        #pag {
+            margin-left: 560px;
+        }
+        #searching {
+            margin-right: 100px;
+        }
+
+    </style>
+
 </head>
 <body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <div role = "navigation">
     <div class="navbar navbar-inverse">
         <a href="/" class="navbar-brand">  BootSample</a>
@@ -52,43 +75,60 @@
 
 <form id="searching" method="get" action="/search" class="navbar-form navbar-right" role="search">
     <div class="form-group">
-        <input type="text" class="form-control" name="searchString" placeholder="Search student">
+        <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Search student">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
 
+
+<%--<c:choose>--%>
+<%--<c:when test="${mode == 'MODE_STATUS'}">--%>
 <div class="container text-center" id="tasksDiv">
-    <h3>My Tasks</h3>
+    <h3>My Students</h3>
     <hr>
     <div class="table-responsive">
         <table class="table table-striped table-bordered text-left">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Finished</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Indeks</th>
+                <%--<th>kategoria</th>--%>
+                <%--<th>data</th>--%>
+                <%--<th>obecnosc</th>--%>
+                <%--<th>delete</th>--%>
 
             </tr>
             </thead>
             <tbody>
+    <form class="form-horizontal" method="POST" action="save-status">
+
             <c:forEach items="${taski}" var="task">
                 <tr>
-                    <td><c:out value="${task.id}"/></td>
-                    <td><c:out value="${task.name}"/></td>
-                    <td><c:out value="${task.description}"/></td>
-                    <td><c:out value="${task.finished}"/></td>
+                    <input type="hidden" name="id" value="${task.studentId}"/>
+                    <td><c:out value="${task.firstName}"/></td>
+                    <td><c:out value="${task.lastName}"/></td>
+                    <td><c:out value="${task.indeks}"/></td>
+                    <%--<td><c:out value="${task.kategoria}"/></td>--%>
+                    <%--<td><input type="text" name="data" id="data" value="${stat.data}"></td>--%>
+                    <%--<td><input type="text" name="status" id="status" value="${stat.status}"></td>--%>
+                    <%--<td><a href="delete-student?id=${task.studentId}"><span class="glyphicon glyphicon-trash"></span></a></td>--%>
+
                 </tr>
             </c:forEach>
+
             </tbody>
         </table>
+
+        <%--</form>--%>
     </div>
 </div>
+<%--</c:when>--%>
+<%--</c:choose>--%>
 
-
-<div class="pagination">
-    <ul>
+<nav aria-label="Page navigation">
+<div class="pagination" id = "pag">
         <c:choose>
             <c:when test="${currentIndex == 1}">
                 <li class="disabled"><a href="#">&lt;&lt;</a></li>
@@ -116,15 +156,18 @@
                 <li class="disabled"><a href="#">&gt;&gt;</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="${nextUrl}">&gt;</a></li>
-                <li><a href="${lastUrl}">&gt;&gt;</a></li>
+                <li>
+                <a aria-label="Previous" href="${nextUrl}">
+                    <span aria-hidden="true">&gt;</span></a>
+                </li>
+                <li>
+                    <a aria-label="Next" href="${lastUrl}">
+                        <span aria-hidden="true">&gt;&gt;</span></a></li>
             </c:otherwise>
         </c:choose>
-    </ul>
 
 </div>
-
-</div>
+</nav>
 
 
 
@@ -134,11 +177,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script>
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
+
+
 </body>
 
 </html>

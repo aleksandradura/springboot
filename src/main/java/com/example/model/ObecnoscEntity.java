@@ -9,16 +9,15 @@ import java.util.Date;
 @Entity(name = "obecnosc")
 public class ObecnoscEntity {
     @Id
-    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=205, allocationSize=12)
-    @GeneratedValue(strategy= GenerationType.IDENTITY, generator="seq-gen")
-    @Column(name="\"ID\"",unique=true,nullable=false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="\"ID\"")
     private int id;
     private String indeks;
-    private Date data;
+    private String data;
     private String status;
 
-
-    public ObecnoscEntity(String indeks, Date data, String status) {
+    public ObecnoscEntity(){}
+    public ObecnoscEntity(String indeks, String data, String status) {
         this.indeks = indeks;
         this.data = data;
         this.status = status;
@@ -40,11 +39,11 @@ public class ObecnoscEntity {
         this.indeks = indeks;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -65,4 +64,5 @@ public class ObecnoscEntity {
                 ", status='" + status + '\'' +
                 '}';
     }
+
 }

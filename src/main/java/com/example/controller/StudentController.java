@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Created by test on 05.06.2017.
  */
 @Controller
-@RequestMapping("user")
+//@RequestMapping("user")
 public class StudentController {
 
     private TeacherRepository teacherRepository;
@@ -35,12 +35,12 @@ public class StudentController {
     //public StudentController(TeacherRepository teacherRepository) {this.teacherRepository = teacherRepository;}
 
 
-    @RequestMapping(value = "/data-student", method = RequestMethod.GET)
-    public String d(HttpServletRequest request) {
-        request.setAttribute("tas", studentService.findAllS());
-        request.setAttribute("mode" , "MODE_DATASTUDENT");
-        return "studentHomePage";
-    }
+//    @RequestMapping(value = "/data-student", method = RequestMethod.GET)
+//    public String d(HttpServletRequest request) {
+//        request.setAttribute("tas", studentService.findAllS());
+//        request.setAttribute("mode" , "MODE_DATASTUDENT");
+//        return "studentHomePage";
+//    }
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String startStudent() {

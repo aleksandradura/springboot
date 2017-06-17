@@ -47,14 +47,15 @@
     </div>
 </div>
 <div id="tHome" style="margin-right:100px;margin-left:100px;">
-    <div class="row">
-        <div class="col-sm-2"> Imie </div>
-        <div class="col-sm-10"> <c:out value="${t.firstName}"/></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2"> Nazwisko </div>
-        <div class="col-sm-10"> <c:out value="${t.lastName}"/></div>
-    </div>
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-2"> Imie </div>--%>
+        <%--<div class="col-sm-10"> <c:out value="${first.firstName}"/></div>--%>
+    <%--</div>--%>
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-2"> Nazwisko </div>--%>
+        <%--<div class="col-sm-10"> <c:out value="${last.lastName}"/></div>--%>
+    <%--</div>--%>
+    <h1>Hello</h1>
 </div>
 </body>
 </html>

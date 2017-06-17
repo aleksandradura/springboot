@@ -2,8 +2,11 @@ package com.example.controller;
 
 import com.example.dao.TaskRepository;
 import com.example.dao.TeacherRepository;
+import com.example.model.ObecnoscEntity;
+import com.example.model.StudentEntity;
 import com.example.model.Task;
 import com.example.model.TeacherEntity;
+import com.example.service.ObecnoscService;
 import com.example.service.StudentService;
 import com.example.service.TaskService;
 import com.example.service.TeacherService;
@@ -16,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +30,11 @@ import java.io.IOException;
 //@RequestMapping("/teacher")
 public class TeacherController {
 
+    @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
     private TaskRepository taskRepository;
+    private TeacherEntity teacherEntity;
     @Autowired
     private TaskService taskService;
     @Autowired
@@ -35,13 +42,12 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
     @Autowired
+    private ObecnoscService obecnoscService;
+    private StudentEntity studentEntity;
+    private ObecnoscEntity obecnoscEntity;
+    @Autowired
     public TeacherController(TeacherRepository teacherRepository) {this.teacherRepository = teacherRepository;}
 
-    //    @RequestMapping(path = "/loginTeacher/{eventID}", method = RequestMethod.GET)
-//    public String data(@PathVariable String eventId, HttpServletRequest request) {
-//        request.setAttribute("tas", teacherService.findTeacher(eventId));
-//        return "teacherHomePage";
-//    }
 
     @RequestMapping(value = "/search")
     public String Search(@RequestParam("searchString") String searchString, HttpSession session, HttpServletRequest request) {
@@ -59,19 +65,6 @@ public class TeacherController {
     public String loginTeacher() {
         return "loginTeacher";
     }
-    @RequestMapping(path = "/upload", method = RequestMethod.GET)
-    public String upload() {
-        return "upload";
-    }
-    @ExceptionHandler(MultipartException.class)
-    public String handleError1(MultipartException e, RedirectAttributes redirectAttributes) {
-
-        redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
-        return "redirect:/uploadStatus";
-
-    }
-//    @RequestMapping(path = "/teacher2" , method = RequestMethod.POST)
-//    public String teacher(TeacherEntity teacherEntity) { return "teacherHomePage/" + teacherEntity.getLastName();}
 
 //    @RequestMapping(path = "/teacher2/{teacherId}", method = RequestMethod.GET)
 //    public String teacher2(@PathVariable(value="teacherId") int teacherId, Model model) {
@@ -81,9 +74,10 @@ public class TeacherController {
 //
 //    }
 
+
     @RequestMapping(value = "/teacher2/{pageNumber}", method = RequestMethod.GET)
     public String teacher2(@PathVariable Integer pageNumber, Model model) {
-        Page<Task> page = taskService.getTaskLog(pageNumber);
+        Page<StudentEntity> page = studentService.getStudentLog(pageNumber);
         //List<Task> taski;
         //taski = taskService.findAll(new PageRequest(3, 3));
         //model.addAttribute("taski", taski);
@@ -100,12 +94,43 @@ public class TeacherController {
 
         return "teacherHomePage";
     }
-    @RequestMapping(path = "/all-tasks", method = RequestMethod.GET)
-    public String allTasks(HttpServletRequest request) {
-        request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
-        request.setAttribute("mode" , "MODE_TASKS");
-        return "index";
+    @RequestMapping(path = "/delete-student", method = RequestMethod.GET)
+    public String deleteStudent(@RequestParam int id, HttpServletRequest request) {
+        studentService.delete(id);
+        request.setAttribute("students", studentService.findAllS(new PageRequest(2, 1)));
+        request.setAttribute("mode" , "MODE_ST");
+        return "teacherHomePage";
     }
+    @RequestMapping(path = "/save-status", method = RequestMethod.POST)
+    public String saveStatus(@ModelAttribute ObecnoscEntity obecnosc, ModelAndView model, BindingResult bindingResult, HttpServletRequest request) {
+        model.addObject("indeks", obecnosc);
+        model.addObject("data" , obecnosc);
+        model.addObject("status" , obecnosc);
+        obecnoscService.save(obecnosc);
+//  request.setAttribute("mode" , "MODE_STATUS");
+        return "teacherHomePage/1";
+    }
+    @RequestMapping(path = "/send-message", method = RequestMethod.GET)
+    public String sendMessage(@ModelAttribute Task task, BindingResult bindingResult, HttpServletRequest request) {
+        return "sendMessage";
+    }
+    @RequestMapping(path = "/save-taskStudent", method = RequestMethod.POST)
+    public String saveTaskStudent(@ModelAttribute Task task, ModelAndView model, BindingResult bindingResult, HttpServletRequest request) {
+        model.addObject("indeks", task);
+        model.addObject("name" , task);
+        model.addObject("description" , task);
+        taskService.save(task);
+        //request.setAttribute("taskis", taskService.findAll(new PageRequest(2, 1)));
+        return "redirect:/teacher2/1";
+    }
+
+
+//    @RequestMapping(path = "/all-tasks", method = RequestMethod.GET)
+//    public String allTasks(HttpServletRequest request) {
+//        request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
+//        request.setAttribute("mode" , "MODE_TASKS");
+//        return "index";
+//    }
 //    @GetMapping("/teacher2/{id}")
 //    public String findOwner(@PathVariable String id, Model model) {
 //        TeacherEntity owner = teacherService.findTeacher(id);
@@ -116,36 +141,21 @@ public class TeacherController {
     @RequestMapping(path = "/teacher2", method = RequestMethod.GET)
     public String proba(Model model) {
 
-        return "teacherHomePage";
+        return "redirect:/teacher2/1";
     }
 
-//    @RequestMapping(value = "/admin/addEvent", method = RequestMethod.POST)
-//    public String adminAddEvent(@ModelAttribute("eventForm") TeacherEntity eventForm, BindingResult bindingResult, Model model,
-//                                @RequestParam(value = "img") CommonsMultipartFile[] img) throws IOException {
-//        eventValidator.setEditable(false);
-//        eventValidator.validate(eventForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            model.addAttribute("gunTypeList", eventService.getListOfGuns());
-//            model.addAttribute("refereeList", refereeService.getListOfReferees());
-//            return "/admin/addEvent";
-//        }
-//
-//        if (img != null && img.length > 0) {
-//            for (CommonsMultipartFile aFile : img) {
-//                eventForm.setImg(aFile.getBytes());
-//            }
-//        }
-//
-//        eventService.save(eventForm);
-//
-//        return "redirect:/admin/eventList";
-//    }
     @RequestMapping(path = "/data-teacher/{teacherId}", method = RequestMethod.GET)
     public String data(@PathVariable int teacherId, Model model) {
-
-        model.addAttribute("t", teacherService.findByTeacherId(teacherId));
-
+        teacherRepository.findByTeacherId(teacherId);
+        model.addAttribute("last", teacherEntity.getLastName());
+        model.addAttribute("first" , teacherEntity.getFirstName());
+        //model.addAttribute("t" , teacherService.findByTeacherId(teacherId));
         return "dataTeacher";
+    }
+    @RequestMapping(path = "/logout")
+    public String logout() {
+        //request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
+        //request.setAttribute("mode" , "MODE_TASKS");
+        return "index";
     }
 }

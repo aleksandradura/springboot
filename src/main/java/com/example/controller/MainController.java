@@ -94,10 +94,10 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(path = "/logout")
-    public String logout(HttpServletRequest request) {
-        request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
-        request.setAttribute("mode" , "MODE_TASKS");
-        return "index";
-    }
+//    @RequestMapping(path = "/logout")
+//    public String logout(HttpServletRequest request) {
+//        request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
+//        request.setAttribute("mode" , "MODE_TASKS");
+//        return "index";
+//    }
 }
