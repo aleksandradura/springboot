@@ -13,6 +13,7 @@
     <link hred="static/css/style.css" rel="stylesheet">
 </head>
 <body>
+<h1>sssss</h1>
 <div role = "navigation">
     <div class="navbar navbar-inverse">
         <a href="/" class="navbar-brand">  BootSample</a>
@@ -33,38 +34,40 @@
         </div>
     </div>
 </div>
+Welcome <c:out value="${requestScope['username']}"></c:out>!
+<br/>
+This is the main page!
+<%--<c:choose>--%>
+    <%--<c:when test="${mode == 'MODE_DATASTUDENT'}">--%>
+        <%--<div class="container text-center" id="dataDiv">--%>
+        <%--<h3>My Data</h3>--%>
+        <%--<hr>--%>
+        <%--<div class="table-responsive">--%>
+        <%--<table class="table table-striped table-bordered text-left">--%>
+        <%--<thead>--%>
+        <%--<tr>--%>
+        <%--<th>ID</th>--%>
+        <%--<th>imie</th>--%>
+        <%--<th>nazwisko</th>--%>
+        <%--<th>indeks</th>--%>
+        <%--</tr>--%>
 
-<c:choose>
-    <c:when test="${mode == 'MODE_DATASTUDENT'}">
-        <div class="container text-center" id="dataDiv">
-        <h3>My Data</h3>
-        <hr>
-        <div class="table-responsive">
-        <table class="table table-striped table-bordered text-left">
-        <thead>
-        <tr>
-        <th>ID</th>
-        <th>imie</th>
-        <th>nazwisko</th>
-        <th>indeks</th>
-        </tr>
+        <%--</thead>--%>
+        <%--<tbody>--%>
+        <%--<c:forEach items="${tas}" var="task">--%>
+            <%--<tr>--%>
+                <%--<td><c:out value="${task.indeks}"/></td>--%>
+                <%--<td><c:out value="${task.firstName}"/></td>--%>
+                <%--<td><c:out value="${task.lastName}"/></td>--%>
 
-        </thead>
-        <tbody>
-        <c:forEach items="${tas}" var="task">
-            <tr>
-                <td><c:out value="${task.indeks}"/></td>
-                <td><c:out value="${task.firstName}"/></td>
-                <td><c:out value="${task.lastName}"/></td>
-
-            </tr>
-        </c:forEach>
-        </tbody>
-        </table>
-        </div>
-        </div>
-    </c:when>
-</c:choose>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+        <%--</tbody>--%>
+        <%--</table>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+    <%--</c:when>--%>
+<%--</c:choose>--%>
 
 
 </body>

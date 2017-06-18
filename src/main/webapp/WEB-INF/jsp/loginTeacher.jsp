@@ -37,7 +37,7 @@
         <div class="form-group">
             <label class="control-label col-md-3"> lastName</label>
             <div class="col-md-7">
-                <input type="text" class="form-control" name="username" value="${teacher.lastName}"/>
+                <input type="text" class="form-control" name="username" value="${teacher.last_name}"/>
             </div>
         </div>
         <div class="form-group">

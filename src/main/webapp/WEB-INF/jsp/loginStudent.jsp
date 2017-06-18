@@ -37,13 +37,13 @@
         <div class="form-group">
             <label class="control-label col-md-3"> Indeks</label>
             <div class="col-md-7">
-                <input type="text" class="form-control" name="username" value="${student.indeks}"/>
+                <input type="text" class="form-control" name="username"/>
             </div>
         </div>
             <div class="form-group">
                 <label class="control-label col-md-3"> Password</label>
                 <div class="col-md-7">
-                    <input type="password" class="form-control" name="password" value="${student.password}"/>
+                    <input type="password" class="form-control" name="password"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </div>
             </div>

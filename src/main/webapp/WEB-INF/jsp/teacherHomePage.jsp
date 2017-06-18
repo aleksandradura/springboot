@@ -71,7 +71,9 @@
         </div>
     </div>
 </div>
-
+Welcome <c:out value="${requestScope['username']}"></c:out>!
+<br/>
+This is the main page!
 
 <form id="searching" method="get" action="/search" class="navbar-form navbar-right" role="search">
     <div class="form-group">

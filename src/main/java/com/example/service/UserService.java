@@ -18,12 +18,12 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class StudentService {
+public class UserService {
     private static final int PAGE_SIZE = 3;
 
     private final StudentRepository studentRepository;
 
-    public StudentService(StudentRepository studentRepository) {
+    public UserService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 

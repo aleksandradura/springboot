@@ -7,7 +7,7 @@ import com.example.model.StudentEntity;
 import com.example.model.Task;
 import com.example.model.TeacherEntity;
 import com.example.service.ObecnoscService;
-import com.example.service.StudentService;
+import com.example.service.UserService;
 import com.example.service.TaskService;
 import com.example.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 @Controller
 //@RequestMapping("/teacher")
@@ -38,7 +34,7 @@ public class TeacherController {
     @Autowired
     private TaskService taskService;
     @Autowired
-    private StudentService studentService;
+    private UserService studentService;
     @Autowired
     private TeacherService teacherService;
     @Autowired

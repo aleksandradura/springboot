@@ -4,6 +4,7 @@ import org.springframework.security.crypto.codec.Base64;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by test on 31.05.2017.
@@ -21,6 +22,7 @@ public class TeacherEntity implements Serializable{
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "avatar")
     private byte[] avatar;
+//    private Set<Role> roles;
 
 //    public byte[] getImg() {
 //        return avatar;
@@ -93,4 +95,13 @@ public class TeacherEntity implements Serializable{
         this.lastName = lastName;
         this.password = password;
     }
+
+//    @ManyToMany
+//    @JoinTable(name = "teacher_role", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//    public void setRoles(Set<Role> roles) {
+//        this.roles= roles;
+//    }
 }

@@ -33,12 +33,12 @@
                     <a href ="#" class="dropdown-toggle" data-toggle="dropdown">Strefa studenta
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="loginStudent">Logowanie</a></li>
+                        <li><a href="student2">Logowanie</a></li>
                         <li><a href="registrationStudent">Rejestracja</a></li>
                     </ul>
                 </li>
 
-                <li><a href="teacher2">Strefa nauczyciela</a></li>
+                <li><a href="loginTeacher">Strefa nauczyciela</a></li>
             </ul>
         </div>
     </div>

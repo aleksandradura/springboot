@@ -1,15 +1,15 @@
 package com.example.controller;
 
+import com.example.dao.StudentRepository;
 import com.example.dao.TaskRepository;
 import com.example.dao.TeacherRepository;
 import com.example.model.StudentEntity;
-import com.example.service.StudentService;
+import com.example.service.UserService;
 import com.example.service.TaskService;
 import com.example.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,11 +28,14 @@ public class StudentController {
     @Autowired
     private TaskService taskService;
     @Autowired
-    private StudentService studentService;
+    private UserService studentService;
     @Autowired
     private TeacherService teacherService;
-    //@Autowired
-    //public StudentController(TeacherRepository teacherRepository) {this.teacherRepository = teacherRepository;}
+    private StudentEntity studentEntity;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    public StudentController(StudentRepository studentRepository) {this.studentRepository = studentRepository;}
 
 
 //    @RequestMapping(value = "/data-student", method = RequestMethod.GET)
@@ -71,6 +74,6 @@ public class StudentController {
         studentService.save(student);
         //request.setAttribute("tasks", studentService.findAll());
         //request.setAttribute("mode" , "MODE_ST");
-        return "redirect:/loginStudent/" + student.getIndeks();
+        return "redirect:/";
     }
 }

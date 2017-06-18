@@ -4,9 +4,11 @@ import com.example.dao.StudentRepository;
 import com.example.model.Role;
 import com.example.model.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,17 +28,27 @@ public class Configuration extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests()
                 .antMatchers("/webjars/font-awesome/**").permitAll()
                         .antMatchers("/webjars/bootstrap/**").permitAll()
-                        .antMatchers("/sass/**").permitAll()
+                        .antMatchers("/**").permitAll()
                         .antMatchers("/webjars/jquery/**").permitAll()
-                        .antMatchers("/registration").permitAll()
-                        .antMatchers("/student").hasRole("USER")
+                        .antMatchers("/teacher2").permitAll()
+//                        .anyRequest().authenticated()
                         .and()
                         .formLogin().loginProcessingUrl("/j_spring_security_check").permitAll()
-                        .loginPage("/loginStudent")
+                        .loginPage("/loginTeacher").permitAll()
+                        //.defaultSuccessUrl("/teacherHomePage")
+//                        .permitAll()
                         .and()
                         .logout()
-                        .logoutSuccessUrl("/login?logout").permitAll()
-                        .logoutUrl("/logout").permitAll();
+//                        .logoutSuccessUrl("/login?logout").permitAll()
+//                        .logoutUrl("/logout").permitAll()
+                        .permitAll();
     }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER");
+//    }
+
 
 }

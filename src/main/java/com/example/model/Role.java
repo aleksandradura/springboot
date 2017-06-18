@@ -9,11 +9,9 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
-    @Id
-    @Column(name="id")
     private Long id;
     private String name;
-    private Set<StudentEntity> users;
+    private Set<TeacherEntity> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,11 +32,11 @@ public class Role {
     }
 
 //    @ManyToMany(mappedBy = "roles")
-//    public Set<StudentEntity> getUsers() {
+//    public Set<TeacherEntity> getUsers() {
 //        return users;
 //    }
 //
-//    public void setUsers(Set<StudentEntity> users) {
+//    public void setUsers(Set<TeacherEntity> users) {
 //        this.users = users;
 //    }
 }
