@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.dao.ImageRepository;
 import com.example.dao.TaskRepository;
 import com.example.dao.TeacherRepository;
+import com.example.model.ImageEntity;
 import com.example.model.Task;
 import com.example.service.UserService;
 import com.example.service.TaskService;
@@ -14,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -33,9 +36,18 @@ public class MainController {
     @Autowired
     public MainController(TeacherRepository teacherRepository) {this.teacherRepository = teacherRepository;}
 
+    @Autowired
+    private ImageRepository imageRepository;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String hello(HttpServletRequest request) {
+    public String hello(HttpServletRequest request, Model model) {
         request.setAttribute("mode" , "MODE_HOME");
+        Iterable<ImageEntity> images = imageRepository.findAll();
+        model.addAttribute("images", images);
+
+        for(ImageEntity imageEntity : images) {
+            imageEntity.setData("data:image/jpeg;base64," + imageEntity.getData());
+        }
         return "index";
     }
 //    @RequestMapping(path = "/upload", method = RequestMethod.GET)

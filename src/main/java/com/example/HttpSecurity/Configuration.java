@@ -46,6 +46,7 @@ public class Configuration extends WebSecurityConfigurerAdapter {
                         .antMatchers("/webjars/jquery/**").permitAll()
                         //.antMatchers("/teacher2").permitAll()
                         .antMatchers("/student2").hasAuthority("STUDENT")
+                        .antMatchers("/teacher2").hasAuthority("TEACHER")
                         .antMatchers("/**").permitAll()
                         .and()
                         .formLogin().usernameParameter("username").passwordParameter("password").loginProcessingUrl("/j_spring_security_check")
