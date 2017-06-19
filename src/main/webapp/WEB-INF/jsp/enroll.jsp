@@ -14,19 +14,21 @@
     <link hred="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-<div role = "navigation">
-    <div class="navbar navbar-inverse">
-        <a href="/" class="navbar-brand">  BootSample</a>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="new-task">New Task</a></li>
-                <li><a href="all-tasks">All Task</a></li>
-                <li><a href="student">Strefa studenta</a></li>
-                <li><a href="student2">Zaloguj sie</a></li>
-                <li><a href="registrationStudent">Zarejestruj</a></li>
-            </ul>
-        </div>
-    </div>
+
+
+
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Wybierz przedmiot
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <c:forEach items="${categories}" var="task">
+
+                <li><c:out value="${task.kategoria}"/></li>
+
+        </c:forEach>
+    </ul>
 </div>
 
 </body>

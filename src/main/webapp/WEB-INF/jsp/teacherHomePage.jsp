@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <c:url var="firstUrl" value="/teacher2/1" />
 <c:url var="lastUrl" value="/teacher2/${pageLog.totalPages}" />
@@ -119,15 +120,10 @@ This is the main page!
 
                 </tr>
             </c:forEach>
-
             </tbody>
         </table>
-
-        <%--</form>--%>
     </div>
 </div>
-<%--</c:when>--%>
-<%--</c:choose>--%>
 
 <nav aria-label="Page navigation">
 <div class="pagination" id = "pag">

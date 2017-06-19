@@ -4,6 +4,7 @@ import com.example.dao.ObecnoscRepository;
 import com.example.dao.StudentRepository;
 import com.example.model.ObecnoscEntity;
 import com.example.model.StudentEntity;
+import com.example.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -37,13 +38,12 @@ public class ObecnoscService {
 //        studentRepository.save(obecnosc);
 //    }
 //
-//    public List<StudentEntity> saveStudentStatus(PageRequest pageRequest) {
-//        Map<StudentEntity, ObecnoscEntity> status = new Map<StudentEntity, ObecnoscEntity>() {
-//
-//        };
-//        for(StudentEntity student : studentRepository.findAll()){
-//            status.save(student);
-//        }
-//        return status;
+public List<ObecnoscEntity> findAllPresence(PageRequest pageRequest){
+    List<ObecnoscEntity> obecnosci = new ArrayList<>();
+    for(ObecnoscEntity task : obecnoscRepository.findAll(pageRequest).getContent()) {
+        obecnosci.add(task);
+    }
+    return obecnosci;
+}
 
 }

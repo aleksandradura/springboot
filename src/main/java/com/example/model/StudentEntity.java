@@ -16,23 +16,23 @@ public class StudentEntity implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY, generator="seq-gen")
     @Column(unique=true,nullable=false)
     private int studentId;
-    //@NotNull
-    //@Size(min=3, max=12)
+    @NotNull
+    @Size(min=3, max=12)
     private String firstName;
-    //@NotNull
-    //@Size(min=3, max=12, message="zzzz")
+    @NotNull
+    @Size(min=3, max=12, message="zzzz")
     private String lastName;
-    //@NotNull
-    //@Size(min=6, max=6, message="uuu")
+    @NotNull
+    @Size(min=6, max=6, message="uuu")
     private String indeks;
-    //@NotNull
-    //@Size(min=3, max=20, message="{password.size}")
+    @NotNull
+    @Size(min=3, max=20, message="{password.size}")
     private String password;
 
     private String kategoria;
 
 
-   // private Set<Role> roles;
+//    private Set<Role> roles;
 
     @Override
     public String toString() {

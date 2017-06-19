@@ -12,6 +12,7 @@
     <title>Task Manager | Home </title>
     <link hred="static/css/bootstrap.min.css" rel="stylesheet">
     <link hred="static/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 <div role = "navigation">
@@ -22,8 +23,7 @@
                 <li><a href="new-task">New Task</a></li>
                 <li><a href="all-tasks">All Task</a></li>
                 <li><a href="student">Strefa studenta</a></li>
-                <li><a href="student2">Zaloguj sie</a></li>
-                <li><a href="#">Zarejestruj</a></li>
+
             </ul>
         </div>
     </div>
@@ -33,27 +33,26 @@
 <hr>
 <div class = "container text-center" id="loginId">
     <form name="loginForm" class="form-horizontal" method="POST" action="<c:url value='j_spring_security_check' />">
-        <input type="hidden" name="id" value="${student.id}"/>
         <div class="form-group">
-            <label class="control-label col-md-3"> Indeks</label>
+            <label class="control-label col-md-3"> lastName</label>
             <div class="col-md-7">
-                <input type="text" class="form-control" name="username"/>
+                <input type="text" class="form-control" name="username" value=''/>
             </div>
         </div>
-            <div class="form-group">
-                <label class="control-label col-md-3"> Password</label>
-                <div class="col-md-7">
-                    <input type="password" class="form-control" name="password"/>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                </div>
+        <div class="form-group">
+            <label class="control-label col-md-3"> Password</label>
+            <div class="col-md-7">
+                <input type="password" class="form-control" name="password"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </div>
+        </div>
         <input type="submit" name="submit" class="btn btn-default" value="Submit"></input>
 
 
     </form>
     <font color="red">
 
-       <span>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
+        <span>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
     </font>
 </div>
 

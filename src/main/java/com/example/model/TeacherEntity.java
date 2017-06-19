@@ -22,7 +22,7 @@ public class TeacherEntity implements Serializable{
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "avatar")
     private byte[] avatar;
-//    private Set<Role> roles;
+ //   private Set<Role> roles;
 
 //    public byte[] getImg() {
 //        return avatar;
@@ -96,12 +96,13 @@ public class TeacherEntity implements Serializable{
         this.password = password;
     }
 
-//    @ManyToMany
+//    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "teacher_role", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    public Set<Role> getRoles() {
 //        return roles;
 //    }
+//
 //    public void setRoles(Set<Role> roles) {
-//        this.roles= roles;
+//        this.roles = roles;
 //    }
 }

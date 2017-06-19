@@ -53,14 +53,13 @@ public class TeacherController {
             request.setAttribute("a", studentService.findStudent(searchString));
 
         }
-
         return "search";
     }
 
-    @RequestMapping(path = "/loginTeacher", method = RequestMethod.GET)
-    public String loginTeacher() {
-        return "loginTeacher";
-    }
+//    @RequestMapping(path = "/login", method = RequestMethod.GET)
+//    public String login() {
+//        return "login";
+//    }
 
 //    @RequestMapping(path = "/teacher2/{teacherId}", method = RequestMethod.GET)
 //    public String teacher2(@PathVariable(value="teacherId") int teacherId, Model model) {
@@ -148,10 +147,10 @@ public class TeacherController {
         //model.addAttribute("t" , teacherService.findByTeacherId(teacherId));
         return "dataTeacher";
     }
-    @RequestMapping(path = "/logout")
-    public String logout() {
-        //request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
-        //request.setAttribute("mode" , "MODE_TASKS");
-        return "index";
-    }
+//    @RequestMapping(path = "/teacher2/logout")
+//    public String logout() {
+//        //request.setAttribute("tasks", taskService.findAll(new PageRequest(2, 1)));
+//        //request.setAttribute("mode" , "MODE_TASKS");
+//        return "redirect:/";
+//    }
 }

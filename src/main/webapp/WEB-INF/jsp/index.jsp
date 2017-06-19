@@ -27,18 +27,16 @@
             <ul class="nav navbar-nav">
                 <li><a href="new-task">New Task</a></li>
                 <li><a href="all-tasks">All Task</a></li>
-                <%--<li><a href="student">Strefa studenta</a></li>--%>
-
                 <li class="dropdown">
                     <a href ="#" class="dropdown-toggle" data-toggle="dropdown">Strefa studenta
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="student2">Logowanie</a></li>
+                        <li><a href="login">Logowanie</a></li>
                         <li><a href="registrationStudent">Rejestracja</a></li>
                     </ul>
                 </li>
 
-                <li><a href="loginTeacher">Strefa nauczyciela</a></li>
+                <li><a href="login">Strefa nauczyciela</a></li>
             </ul>
         </div>
     </div>

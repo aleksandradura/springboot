@@ -51,7 +51,7 @@
 <hr>
 
 <div class = "container text-center" id="loginId">
-    <form class="form-horizontal" method="POST" action="save-student" modelattribute="student">
+    <form class="form-horizontal" method="POST" action="save-student" commandName="userForm">
         <form:errors path="*" cssClass="errorblock" element="div" />
         <%--<sf:errors path="*" element="div"--%>
         <input type="hidden" name="idStudent" value="${student.idStudent}"/>

@@ -30,16 +30,9 @@ public class TeacherDetailsServiceImpl implements UserDetailsService {
     private TeacherRepository teacherRepository;
 
     @Override
-    //@Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) {
         TeacherEntity teacherEntity = teacherRepository.findByLastName(username);
-
-//        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-//        for(Role role : teacherEntity.getRoles()){
-//            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-//
-//        }
-//        return new org.springframework.security.core.userdetails.User(teacherEntity.getLastName(), teacherEntity.getPassword(), grantedAuthorities);
         if(teacherEntity == null) {
             throw new UsernameNotFoundException(
                     "Nie znaleziono uzytkownika '" + username + " '. ");

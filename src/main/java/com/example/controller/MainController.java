@@ -51,13 +51,6 @@ public class MainController {
 //        request.setAttribute("mode" , "MODE_TASKS");
 //        return "index";
 //    }
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
-    public String home(Model model) {
-        List<Task> taski;
-        taski = taskService.findAll(new PageRequest(2, 1));
-        model.addAttribute("taski", taski);
-        return "home";
-    }
     @RequestMapping(path = "/new-task", method = RequestMethod.GET)
     public String newTask(HttpServletRequest request) {
         //request.setAttribute("tasks", taskService.findAll());
