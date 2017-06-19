@@ -1,17 +1,11 @@
 package com.example.service;
 
-import com.example.dao.StudentRepository;
 import com.example.dao.TeacherRepository;
-import com.example.model.StudentEntity;
-import com.example.model.Task;
 import com.example.model.TeacherEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.function.Predicate;
 
 /**
  * Created by test on 31.05.2017.
@@ -32,7 +26,7 @@ public class TeacherService {
 //        return teacherRepository.findOne(lastName);
 //    }
     public TeacherEntity findByTeacherId(int teacherId) {
-        return teacherRepository.findByTeacherId(teacherId);
+        return teacherRepository.findById(teacherId);
 
     }
 

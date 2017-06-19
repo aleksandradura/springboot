@@ -83,7 +83,15 @@ This is the main page!
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-
+<h3>File Upload:</h3>
+Select a file to upload: <br />
+<form action = "/teacher2/imageUpload" method = "post"
+      enctype = "multipart/form-data">
+    <input type = "file" name = "file" />
+    <br />
+    <input type = "submit" value = "Upload File" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
 
 <%--<c:choose>--%>
 <%--<c:when test="${mode == 'MODE_STATUS'}">--%>
@@ -109,7 +117,7 @@ This is the main page!
 
             <c:forEach items="${taski}" var="task">
                 <tr>
-                    <input type="hidden" name="id" value="${task.studentId}"/>
+                    <input type="hidden" name="id" value="${task.id}"/>
                     <td><c:out value="${task.firstName}"/></td>
                     <td><c:out value="${task.lastName}"/></td>
                     <td><c:out value="${task.indeks}"/></td>

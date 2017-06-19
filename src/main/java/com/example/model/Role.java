@@ -1,5 +1,8 @@
 package com.example.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,10 +11,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "role")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role {
     private Long id;
     private String name;
-    private Set<TeacherEntity> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,12 +35,4 @@ public class Role {
         this.name = name;
     }
 
-//    @ManyToMany(mappedBy = "roles")
-//    public Set<TeacherEntity> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<TeacherEntity> users) {
-//        this.users = users;
-//    }
 }

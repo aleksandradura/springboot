@@ -1,5 +1,6 @@
 package com.example.model;
 
+import lombok.Data;
 import org.springframework.security.crypto.codec.Base64;
 
 import javax.persistence.*;
@@ -10,15 +11,9 @@ import java.util.Set;
  * Created by test on 31.05.2017.
  */
 @Entity(name = "teacher")
-public class TeacherEntity implements Serializable{
-    @Id
-    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=205, allocationSize=12)
-    @GeneratedValue(strategy= GenerationType.IDENTITY, generator="seq-gen")
-    @Column(name="\"ID\"",unique=true,nullable=false)
-        private int teacherId;
-        private String firstName;
-        private String lastName;
-        private String password;
+@Data
+public class TeacherEntity extends UserEntity{
+
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "avatar")
     private byte[] avatar;
@@ -44,65 +39,5 @@ public class TeacherEntity implements Serializable{
 //        this.base64 = base64;
 //    }
 
-    @Override
-    public String toString() {
-        return "TeacherEntity{" +
-                "teacherId=" + teacherId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 
-    public int getTeacherId() {
-
-        return teacherId;
-    }
-
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public TeacherEntity() {}
-
-    public TeacherEntity(String firstName, String lastName, String password) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
-
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "teacher_role", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
 }

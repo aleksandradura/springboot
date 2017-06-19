@@ -1,15 +1,14 @@
 package com.example.controller;
 
+import com.example.dao.ImageRepository;
 import com.example.dao.TaskRepository;
 import com.example.dao.TeacherRepository;
-import com.example.model.ObecnoscEntity;
-import com.example.model.StudentEntity;
-import com.example.model.Task;
-import com.example.model.TeacherEntity;
+import com.example.model.*;
 import com.example.service.ObecnoscService;
 import com.example.service.UserService;
 import com.example.service.TaskService;
 import com.example.service.TeacherService;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,10 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 //@RequestMapping("/teacher")
@@ -44,6 +45,9 @@ public class TeacherController {
     @Autowired
     public TeacherController(TeacherRepository teacherRepository) {this.teacherRepository = teacherRepository;}
 
+    @Autowired
+    private ImageRepository imageRepository;
+
 
     @RequestMapping(value = "/search")
     public String Search(@RequestParam("searchString") String searchString, HttpSession session, HttpServletRequest request) {
@@ -63,7 +67,7 @@ public class TeacherController {
 
 //    @RequestMapping(path = "/teacher2/{teacherId}", method = RequestMethod.GET)
 //    public String teacher2(@PathVariable(value="teacherId") int teacherId, Model model) {
-//        TeacherEntity tas =  teacherRepository.findByTeacherId(teacherId);
+//        TeacherEntity tas =  teacherRepository.findById(teacherId);
 //        model.addAttribute(tas);
 //        return "teacherHomePage";
 //
@@ -141,10 +145,10 @@ public class TeacherController {
 
     @RequestMapping(path = "/data-teacher/{teacherId}", method = RequestMethod.GET)
     public String data(@PathVariable int teacherId, Model model) {
-        teacherRepository.findByTeacherId(teacherId);
+        teacherRepository.findById(teacherId);
         model.addAttribute("last", teacherEntity.getLastName());
         model.addAttribute("first" , teacherEntity.getFirstName());
-        //model.addAttribute("t" , teacherService.findByTeacherId(teacherId));
+        //model.addAttribute("t" , teacherService.findById(teacherId));
         return "dataTeacher";
     }
 //    @RequestMapping(path = "/teacher2/logout")
@@ -153,4 +157,15 @@ public class TeacherController {
 //        //request.setAttribute("mode" , "MODE_TASKS");
 //        return "redirect:/";
 //    }
+
+    @RequestMapping(path = "/teacher2/imageUpload")
+    public String uploadImage(@RequestParam("file")MultipartFile file,
+                              Model model) throws IOException {
+        String data = Base64.encode(file.getBytes());
+        ImageEntity imageEntity = new ImageEntity();
+        imageEntity.setData(data);
+        imageRepository.save(imageEntity);
+        return "redirect:/teacher2";
+    }
+
 }

@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer>, PagingAndSortingRepository<StudentEntity, Integer> {
     StudentEntity findByIndeks(String indeks);
     StudentEntity findByLastName(String lastName);
-    StudentEntity findByStudentId(int studentId);
+    StudentEntity findById(int studentId);
     //StudentEntity findByKategoria(String kategoria);
 }

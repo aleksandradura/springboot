@@ -10,6 +10,7 @@ import com.example.model.Task;
 import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,8 +29,10 @@ import java.util.List;
 @Controller
 public class StudentController {
 
-    private TeacherRepository teacherRepository;
-    private TaskRepository taskRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
     private TaskService taskService;
     @Autowired
@@ -109,6 +112,7 @@ public class StudentController {
         if (bindingResult.hasErrors()) {
             return "registrationStudent";
         }
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentService.save(student);
         //request.setAttribute("tasks", studentService.findAll());
         //request.setAttribute("mode" , "MODE_ST");

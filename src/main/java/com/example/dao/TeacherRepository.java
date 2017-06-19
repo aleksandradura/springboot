@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TeacherRepository extends CrudRepository<TeacherEntity, Integer>, PagingAndSortingRepository<TeacherEntity, Integer> {
     TeacherEntity findByLastName(String lastName);
-    TeacherEntity findByTeacherId(int teacherId);
+    TeacherEntity findById(int teacherId);
     //TeacherEntity findByKategoria(String Kategoria);
 }
